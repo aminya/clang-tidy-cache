@@ -19,10 +19,18 @@ type CompilerCommand struct {
 	InputPath  string
 }
 
-func ParseClangCommandString(commands string) (*CompilerCommand, error) {
-	words, err := shlex.Split(commands)
-	if err != nil {
-		return nil, err
+func ParseClangCommandString(entry *DatabaseEntry) (*CompilerCommand, error) {
+	var words []string
+	if len(entry.Command) != 0 {
+		// if command given, split it
+		splitCommands, err := shlex.Split(entry.Command)
+		if err != nil {
+			return nil, err
+		}
+		words = splitCommands
+	} else {
+		// use the arguments
+		words = entry.Arguments
 	}
 
 	var cmd CompilerCommand
