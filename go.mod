@@ -2,7 +2,10 @@ module github.com/ejfitzgerald/clang-tidy-cache
 
 go 1.17
 
-require cloud.google.com/go/storage v1.20.0
+require (
+	cloud.google.com/go/storage v1.20.0
+	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
+)
 
 require (
 	cloud.google.com/go v0.100.2 // indirect
