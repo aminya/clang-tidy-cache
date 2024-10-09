@@ -17,8 +17,9 @@ import (
 const VERSION = "0.3.0"
 
 type Configuration struct {
-	ClangTidyPath string                   `json:"clang_tidy_path"`
-	GcsConfig     *caches.GcsConfiguration `json:"gcs,omitempty"`
+	ClangTidyPath string                     `json:"clang_tidy_path"`
+	GcsConfig     *caches.GcsConfiguration   `json:"gcs,omitempty"`
+	RedisConfig   *caches.RedisConfiguration `json:"redis,omitempty"`
 }
 
 func readConfigFile(cfg *Configuration) error {
@@ -242,6 +243,14 @@ func main() {
 	var cache caches.Cacher
 	if cfg.GcsConfig != nil {
 		candidate, err := caches.NewGcsCache(cfg.GcsConfig)
+		if err == nil {
+			cache = candidate
+		}
+	}
+
+	// if no other cache is configured then default to the FS cache
+	if cfg.RedisConfig != nil {
+		candidate, err := caches.NewRedisCache(cfg.RedisConfig)
 		if err == nil {
 			cache = candidate
 		}
