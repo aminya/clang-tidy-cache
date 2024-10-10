@@ -4,19 +4,20 @@ import (
 	"context"
 	"encoding/hex"
 	"errors"
-	"github.com/go-redis/redis/v8"
 	"os"
 	"strconv"
+
+	"github.com/go-redis/redis/v8"
 )
 
 type RedisConfiguration struct {
-	Address string  `json:"address"`
+	Address  string `json:"address"`
 	Password string `json:"password"`
 	Database int    `json:"database"`
 }
 
 type RedisCache struct {
-	ctx context.Context
+	ctx    context.Context
 	client *redis.Client
 }
 
@@ -67,12 +68,17 @@ func NewRedisCache(cfg *RedisConfiguration) (*RedisCache, error) {
 		pw = cfg.Password
 	}
 
-	db := cfg.Database
+	var db int
+	if cfg.Database == 0 {
+		db = getRedisDatabase()
+	} else {
+		db = cfg.Database
+	}
 
 	client := redis.NewClient(&redis.Options{
-		Addr: addr,
+		Addr:     addr,
 		Password: pw,
-		DB: db,
+		DB:       db,
 	})
 
 	ctx := context.Background()
@@ -82,8 +88,8 @@ func NewRedisCache(cfg *RedisConfiguration) (*RedisCache, error) {
 		return nil, err
 	}
 
-	cache := RedisCache {
-		ctx: ctx,
+	cache := RedisCache{
+		ctx:    ctx,
 		client: client,
 	}
 
