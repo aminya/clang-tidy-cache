@@ -1,6 +1,8 @@
 module github.com/ejfitzgerald/clang-tidy-cache
 
-go 1.17
+go 1.21
+
+toolchain go1.21.5
 
 require (
 	cloud.google.com/go/storage v1.20.0
@@ -12,12 +14,31 @@ require (
 	cloud.google.com/go v0.100.2 // indirect
 	cloud.google.com/go/compute v0.1.0 // indirect
 	cloud.google.com/go/iam v0.1.1 // indirect
+	github.com/aws/aws-sdk-go-v2 v1.32.2 // indirect
+	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.6 // indirect
+	github.com/aws/aws-sdk-go-v2/config v1.27.43 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.17.41 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.17 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.21 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.21 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.1 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.21 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.4.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.65.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.24.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.28.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.32.2 // indirect
+	github.com/aws/smithy-go v1.22.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/googleapis/gax-go/v2 v2.1.1 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/net v0.0.0-20210503060351-7fd8e65b6420 // indirect
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8 // indirect
