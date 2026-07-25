@@ -10,7 +10,6 @@ import (
 	"os/exec"
 
 	"github.com/ejfitzgerald/clang-tidy-cache/utils"
-	"github.com/google/shlex"
 )
 
 type CompilerCommand struct {
@@ -23,8 +22,8 @@ type CompilerCommand struct {
 func ParseClangCommandString(entry *DatabaseEntry) (*CompilerCommand, error) {
 	var words []string
 	if len(entry.Command) != 0 {
-		// if command given, split it
-		splitCommands, err := shlex.Split(entry.Command)
+		// if command given, split it using the rules of the current platform
+		splitCommands, err := splitCommandString(entry.Command)
 		if err != nil {
 			return nil, err
 		}
@@ -32,6 +31,10 @@ func ParseClangCommandString(entry *DatabaseEntry) (*CompilerCommand, error) {
 	} else {
 		// use the arguments
 		words = entry.Arguments
+	}
+
+	if len(words) == 0 {
+		return nil, errors.New("Unable to determine the compiler command")
 	}
 
 	var cmd CompilerCommand
