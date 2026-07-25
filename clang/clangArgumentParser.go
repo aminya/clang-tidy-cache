@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/ejfitzgerald/clang-tidy-cache/utils"
 	"github.com/google/shlex"
 )
 
@@ -34,7 +35,8 @@ func ParseClangCommandString(entry *DatabaseEntry) (*CompilerCommand, error) {
 	}
 
 	var cmd CompilerCommand
-	cmd.Compiler = words[0]
+	// normalize the compiler path in the same way as the database entries
+	cmd.Compiler = utils.NormalizePath(words[0])
 	cmd.Arguments = make([]string, 0, len(words))
 
 	// strip the compiler from the front

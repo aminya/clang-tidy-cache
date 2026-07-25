@@ -50,7 +50,7 @@ func NormalizePath(path string) string {
 	normalizedPath = PosixifyPath(path)
 
 	// Remove the leading "./" if present
-	if normalizedPath[0:2] == "./" {
+	if strings.HasPrefix(normalizedPath, "./") {
 		normalizedPath = normalizedPath[2:]
 	}
 
