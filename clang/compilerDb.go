@@ -50,7 +50,7 @@ func ExtractCompilationTarget(databaseRootPath string, target string) (*Database
 		entry.Directory = utils.NormalizePath(entry.Directory)
 		target = utils.NormalizePath(target)
 
-		if entry.File == target || entry.File == filepath.Join(entry.Directory, target) {
+		if entry.File == target || entry.File == utils.NormalizePath(filepath.Join(entry.Directory, target)) {
 			return &entry, nil
 		}
 	}
